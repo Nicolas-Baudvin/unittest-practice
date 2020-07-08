@@ -37,7 +37,6 @@ export default () => {
     const handleClick = (taskId) => () => {
         const newTasksArray = state.tasks.map((task) => {
             if (task._id === taskId) {
-                console.log("found it !")
                 task.isChecked = !task.isChecked;
             }
             return task;
