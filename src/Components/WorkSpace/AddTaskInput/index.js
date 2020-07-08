@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Paper, TextField, InputAdornment } from "@material-ui/core";
 import AddIcon from '@material-ui/icons/Add';
 import { useStateContext } from '../../../ContextProvider';
@@ -23,13 +23,17 @@ export default ({ classes, setFocus }) => {
                 ...state, tasks: state.tasks ?
                     [...state.tasks, { name: value, isChecked: false, _id: state.tasks.length }] :
                     [{ name: value, isChecked: false, _id: 0 }]
-            })
-            setValue('')
+            });
+            setValue('');
         }
         else {
             setError("Le nom doit faire entre 1 et 30 caractères inclus");
         }
     };
+
+    useEffect(() => {
+        localStorage.setItem("tasks", JSON.stringify(state.tasks))
+    }, [state])
     return (
         <Paper component="form" onSubmit={handleSubmit} className={classes.paper}>
             <TextField
