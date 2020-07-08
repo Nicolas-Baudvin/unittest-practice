@@ -1,8 +1,7 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { mount } from 'enzyme';
 import Home from './index';
-import { useStateContext, StateContextProvider } from '../../ContextProvider';
-import { renderHook } from '@testing-library/react-hooks'
+import { StateContextProvider } from '../../ContextProvider';
 
 jest.mock('react-router-dom', () => ({
     useHistory: () => ({

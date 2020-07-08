@@ -7,10 +7,12 @@ import Header from '../Header';
 import Body from '../Home';
 import WorkSpace from '../WorkSpace';
 
-test('renders without crash', () => {
-  const wrapper = shallow(<App />);
+describe('App Component', () => {
+  it("should not crash", () => {
+    const wrapper = shallow(<App />);
 
-  expect(wrapper.contains(<Header />)).toEqual(true);
-  expect(wrapper.contains(<Body />)).toEqual(true);
-  expect(wrapper.contains(<WorkSpace />)).toEqual(true);
+    expect(wrapper.contains(<Header />)).toEqual(true);
+    expect(wrapper.contains(<Body />)).toEqual(true);
+    expect(wrapper.contains(<WorkSpace />)).toEqual(true);
+  })
 });

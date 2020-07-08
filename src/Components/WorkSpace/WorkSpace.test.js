@@ -9,14 +9,15 @@ jest.mock('react-router-dom', () => ({
     }),
 }));
 
+beforeEach(() => {
+    localStorage.setItem("udta", "username")
+});
+afterEach(() => {
+    localStorage.clear();
+})
+
 describe("Workspace Component", () => {
     const wrapper = mount(<StateContextProvider initialValue={{}}><WorkSpace /></StateContextProvider>);
-    beforeEach(() => {
-        localStorage.setItem("udta", "username")
-    });
-    afterEach(() => {
-        localStorage.clear();
-    })
     it("should have an input", () => {
         const input = wrapper.find("input");
         expect(input).toHaveLength(1);

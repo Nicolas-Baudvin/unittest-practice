@@ -18,7 +18,10 @@ const useStyles = makeStyles(() => ({
         width: '300px'
     },
     title: {
-        margin: '1em'
+        margin: '1em',
+        '& > span': {
+            fontWeight: 'bold',
+        }
     },
     input: {
         width: '100%'
@@ -45,11 +48,11 @@ export default () => {
 
     return (
         <Container className={classes.root}>
-            <Typography className={classes.title}>Bonjour {state.username}</Typography>
+            <Typography className={classes.title}>Bonjour <span>{state.username}</span></Typography>
             <AddListInput classes={classes} isFocus={isFocus} setFocus={setFocus} />
             <Divider variant="middle" className={classes.divider} />
             {
-                state.tasks && <Tasks />
+                state.tasks && <Tasks tasks={state.tasks} />
             }
         </Container>
     );

@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Container, makeStyles, Checkbox, Typography, Divider } from "@material-ui/core";
 import { useStateContext } from '../../../ContextProvider';
+import cx from 'classnames';
 
 const useStyles = makeStyles(() => ({
     root: {
@@ -27,10 +28,16 @@ const useStyles = makeStyles(() => ({
     },
     name: {
 
+    },
+    linethrough: {
+        textDecoration: 'line-through',
+    },
+    taskchecked: {
+        backgroundColor: "rgba(0,0,0,.09)"
     }
 }));
 
-export default () => {
+export default ({ tasks }) => {
     const classes = useStyles();
     const [state, setState] = useStateContext();
 
@@ -43,15 +50,24 @@ export default () => {
         });
         setState({ ...state, tasks: newTasksArray })
     };
+
+    useEffect(() => {
+        if (state.tasks) {
+            localStorage.setItem("tasks", JSON.stringify(state.tasks))
+        }
+    }, [state])
     return (
         <Container className={classes.root}>
             {
                 state.tasks && state.tasks.map((task) =>
-                    <Container onClick={handleClick(task._id)} className={classes.task} key={task._id}>
-                        <Checkbox checked={task.isChecked} />
-                        <Typography> {task.name} </Typography>
+                    <Container onClick={handleClick(task._id)} className={cx(classes.task, { [classes.taskchecked]: task.isChecked })} key={task._id}>
+                        <Checkbox checked={task.isChecked} value={task.isChecked} />
+                        <Typography className={cx(classes.name, { [classes.linethrough]: task.isChecked })}> {task.name} </Typography>
                     </Container>
                 )
+            }
+            {
+                !state.tasks && <p>Vous n'avez aucune tâche</p>
             }
         </Container>
     )

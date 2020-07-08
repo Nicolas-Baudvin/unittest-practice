@@ -32,7 +32,7 @@ export default ({ classes, setFocus }) => {
     };
 
     useEffect(() => {
-        if (state.tasks.length) {
+        if (state.tasks) {
             localStorage.setItem("tasks", JSON.stringify(state.tasks))
         }
     }, [state])
