@@ -44,11 +44,10 @@ export default () => {
         });
         setState({ ...state, tasks: newTasksArray })
     };
-
     return (
         <Container className={classes.root}>
             {
-                state.tasks.map((task) =>
+                state.tasks && state.tasks.map((task) =>
                     <Container onClick={handleClick(task._id)} className={classes.task} key={task._id}>
                         <Checkbox checked={task.isChecked} />
                         <Typography> {task.name} </Typography>
