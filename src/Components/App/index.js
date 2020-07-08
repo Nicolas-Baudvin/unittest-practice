@@ -9,7 +9,7 @@ import { StateContextProvider } from '../../ContextProvider'
 
 const App = () => {
   return (
-    <StateContextProvider initialValue={{ username: localStorage.getItem("udta") || "", tasks: localStorage.getItem("tasks") || [] }}>
+    <StateContextProvider initialValue={{ username: localStorage.getItem("udta") || "", tasks: JSON.parse(localStorage.getItem("tasks")) || [] }}>
       <div className="App">
         <Router>
           <Header />
