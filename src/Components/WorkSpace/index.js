@@ -35,7 +35,7 @@ export default () => {
     const [isFocus, setFocus] = useState(false);
     const history = useHistory();
     const classes = useStyles({ isFocus });
-    const [state, setState] = useStateContext();
+    const [state] = useStateContext();
 
     useEffect(() => {
         if (!state.username) {
