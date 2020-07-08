@@ -32,7 +32,9 @@ export default ({ classes, setFocus }) => {
     };
 
     useEffect(() => {
-        localStorage.setItem("tasks", JSON.stringify(state.tasks))
+        if (state.tasks.length) {
+            localStorage.setItem("tasks", JSON.stringify(state.tasks))
+        }
     }, [state])
     return (
         <Paper component="form" onSubmit={handleSubmit} className={classes.paper}>
